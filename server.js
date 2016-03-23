@@ -34,14 +34,15 @@ io.on('connection', function(socket) {
         uuid: uuid,
         tabs: 0,
         nick: 'guest' + chatSession.count,
-        socket: socket
+        socket: socket,
+        currentChat: 0
       };
-      socket.emit('message', chatSession.log);
+      socket.emit('message', chatSession.log[player.currentChat]);
       io.sockets.emit('nickname', player.nick);
 
     } else {
       player = chatSession.players[uuid];
-      socket.emit('message', chatSession.log + '\nWelcome back ' + player.nick + '!');
+      socket.emit('message', chatSession.log[player.currentChat] + '\nWelcome back ' + player.nick + '!');
       if (!player.disconnected) {
         player.tabs++;
         socket.disconnect();
@@ -78,7 +79,7 @@ io.on('connection', function(socket) {
     if (!commands.isCommand(msg)) {
       var out = player.nick + ': ' + msg;
       io.emit('message', out);
-      chatSession.log += out + "\n";
+      chatSession.log[player.currentChat] += out + "\n";
     } else
       commands.run(player, msg);
   });
