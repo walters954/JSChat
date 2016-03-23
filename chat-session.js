@@ -4,5 +4,5 @@
 module.exports = {
 	players: [],
 	count: 0,
-	log: ""
+	log: " "
 }
