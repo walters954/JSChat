@@ -83,7 +83,7 @@ io.on('connection', function(socket) {
       return;
     }
     if (!commands.isCommand(msg)) {
-      var out = player.nick + ': ' + msg + player.disconnected;
+      var out = player.nick + ': ' + msg;
       io.emit('message', out);
       chatSession.log[player.currentChat] += out + "\n";
     } else
