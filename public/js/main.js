@@ -33,7 +33,9 @@ socket.on('clear', function() {
   $('#messages').html("");
 });
 socket.on('channel', function(msg) {
-  
+  $('#messages').append($('<li>').text(msg));
+});
+socket.on('list', function(msg) {
   $('#messages').append($('<li>').text(msg));
 });
 

@@ -38,7 +38,28 @@ var commands = {
 			{
 				player.socket.emit('message',  'Incorrect Channel Selection: ' + args[0]);
 			}
+		}
+	},
+	"list":
+	{
+		numArgs: 1,
+		handler: function(args,io,session,player){
+			channelList = "";
+			var arrayLength = session.log.length;
+			for (var i = 0; i < arrayLength; i++)
+			 {
+				 var channelName = session.log[i].split(" ");
+				 channelList += 'Number: ' + i + ' Name: ' +channelName[0] + '\n';
+			 }
 
+			if (args[0] != null)
+			{
+				player.socket.emit('message',  channelList);
+			}
+			else
+			{
+				player.socket.emit('message',  'Channels: \n' +  channelList);
+			}
 		}
 	}
 }
