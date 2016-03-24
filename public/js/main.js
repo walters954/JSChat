@@ -38,6 +38,9 @@ socket.on('channel', function(msg) {
 socket.on('list', function(msg) {
   $('#messages').append($('<li>').text(msg));
 });
+// socket.on('quit', function(msg) {
+//   socket.emit('disconnect', uuid);
+// });
 
 /*Warren */
 jQuery(document).ready(function() {

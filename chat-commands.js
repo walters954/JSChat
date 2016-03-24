@@ -82,6 +82,14 @@ var commands = {
 				player.socket.emit('message',  'Channels: \n' +  channelList);
 			}
 		}
+	},
+	"quit": {
+		numArgs: 0,
+		handler: function(args, io, session, player) {
+			io.sockets.emit('message', player.nick + ' has quit...');
+			// player.socket.emit('message', player.nick + ' has quit... another message');
+			io.sockets.emit('disconnect', '/nick <nickname> - change your username\n /clear - clear your chat log.');
+		}
 	}
 }
 

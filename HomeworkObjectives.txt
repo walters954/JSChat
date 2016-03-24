@@ -27,8 +27,8 @@ Complete Given 3.b) Input box for messages
 ##NameOfChannel: Channels created by a user
 8.1) Channels created by SysOp or Moderators are permanent. SysOp may delete channels.
 9) You will have to command for the following actions
-/list (display channel list)
-/list xxx (display channel that contains that string xxx)
+Complete Warren /list (display channel list)
+Complete Warren /list xxx (display channel that contains that string xxx)
 /msg nick "mesage this" (sends private message to user). Once they are in the chat window, the chat windows takes care of the private messages (using the same emit command)
 /nick mynewnick (changes nickname)
 /quit
