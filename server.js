@@ -36,7 +36,8 @@ io.on('connection', function(socket) {
         nick: 'guest' + chatSession.count,
         socket: socket,
         currentChat: 0,
-        level: 0
+        level: 0,
+        disconnected: false
       };
       socket.emit('message', chatSession.log[player.currentChat]);
       io.sockets.emit('nickname', player.nick);
@@ -72,13 +73,17 @@ io.on('connection', function(socket) {
         delete chatSession.players[player.uuid];
         chatSession.count--;
       }
-    }, 2000);
+    }, 2000); //default 2000
   });
 
 
   socket.on('message', function(msg) {
+    if (player.disconnected)
+    {
+      return;
+    }
     if (!commands.isCommand(msg)) {
-      var out = player.nick + ': ' + msg;
+      var out = player.nick + ': ' + msg + player.disconnected;
       io.emit('message', out);
       chatSession.log[player.currentChat] += out + "\n";
     } else
