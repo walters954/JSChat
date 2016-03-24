@@ -45,19 +45,40 @@ var commands = {
 		numArgs: 1,
 		handler: function(args,io,session,player){
 			channelList = "";
+
 			var arrayLength = session.log.length;
-			for (var i = 0; i < arrayLength; i++)
-			 {
-				 var channelName = session.log[i].split(" ");
-				 channelList += 'Number: ' + i + ' Name: ' +channelName[0] + '\n';
-			 }
+
 
 			if (args[0] != null)
 			{
-				player.socket.emit('message',  channelList);
+				for (var i = 0; i < arrayLength; i++)
+				 {
+					 var channelName = session.log[i].split(" ");
+					 if (channelName[0].indexOf(args[0]) > -1)
+					 {
+						 channelList += 'Number: ' + i + ' Name: ' +channelName[0] + '\n';
+					 }
+				 }
+				 //Change to show when channel length < 1 to show the entire channel list
+				if (channelList.length < 1)
+				{
+					player.socket.emit('message',  'No channel meets search: ' + args[0]);
+				}
+				else
+				{
+					player.socket.emit('message',  channelList);
+				}
+
+
 			}
 			else
 			{
+
+				for (var i = 0; i < arrayLength; i++)
+				 {
+					 var channelName = session.log[i].split(" ");
+					 channelList += 'Number: ' + i + ' Name: ' +channelName[0] + '\n';
+				 }
 				player.socket.emit('message',  'Channels: \n' +  channelList);
 			}
 		}
