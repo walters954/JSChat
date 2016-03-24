@@ -14,7 +14,7 @@ var commands = {
 	"clear": {
 		numArgs: 0,
 		handler: function(args, io, session, player) {
-			session.log = "";
+			session.log[player.currentChat] = "";
 			player.socket.emit('clear');
 		}
 	},
@@ -22,6 +22,13 @@ var commands = {
 		numArgs: 0,
 		handler: function(args, io, session, player) {
 			player.socket.emit('message', '/nick <nickname> - change your username\n /clear - clear your chat log.');
+		}
+	},
+	"channel":
+	{
+		numArgs: 1,
+		handler: function(args,io,session,player){
+
 		}
 	}
 }
