@@ -28,6 +28,16 @@ var commands = {
 	{
 		numArgs: 1,
 		handler: function(args,io,session,player){
+			if (args[0] < session.log.length)
+			{
+				player.currentChat = args[0];
+				player.socket.emit('clear');
+				player.socket.emit('message',  session.log[player.currentChat]);
+			}
+			else
+			{
+				player.socket.emit('message',  'Incorrect Channel Selection: ' + args[0]);
+			}
 
 		}
 	}
@@ -46,7 +56,7 @@ var isCommand = function(msg) {
  */
 var run = function(player, msg) {
 	var cmd = msg.substring(1, msg.length);
-	var args = cmd.match(/[A-z][a-z]*/g);
+	var args = cmd.match(/[0-9A-z][a-z]*/g);
 	var fun = args.shift();
 
 	commands[fun].handler(args, io, session, player);

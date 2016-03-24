@@ -32,6 +32,10 @@ socket.on('nickname', function(msg) {
 socket.on('clear', function() {
   $('#messages').html("");
 });
+socket.on('channel', function(msg) {
+  
+  $('#messages').append($('<li>').text(msg));
+});
 
 /*Warren */
 jQuery(document).ready(function() {

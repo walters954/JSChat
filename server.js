@@ -35,7 +35,8 @@ io.on('connection', function(socket) {
         tabs: 0,
         nick: 'guest' + chatSession.count,
         socket: socket,
-        currentChat: 0
+        currentChat: 0,
+        currentChatString: '0'
       };
       socket.emit('message', chatSession.log[player.currentChat]);
       io.sockets.emit('nickname', player.nick);

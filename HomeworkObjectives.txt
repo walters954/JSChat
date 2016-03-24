@@ -1,4 +1,4 @@
-1) You must have a login page -- no password, just nickname
+Complete Nick 1) You must have a login page -- no password, just nickname
 
 2) If nickname is taken, system will rename it.
 
@@ -6,7 +6,7 @@
 
 3.a) Channels (you will have different tabs) including a system log that gives information about user's connection.
 
-3.b) Input box for messages
+Complete Given 3.b) Input box for messages
 
 3.c) List with users connected
 
@@ -72,4 +72,4 @@ For example, user created channel
 Extra Credit
 
 * User may registered their nickname to keep it permanent. In that case, they will need to add a password and that should be encrypted
-* SmartBot rpn : Implement reverse polish notation. 
+* SmartBot rpn : Implement reverse polish notation.
